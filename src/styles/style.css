@@ -215,3 +215,22 @@ body.dark {
 .item-about{
     margin-bottom: 16px;
 }
+
+.video{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #005224;
+}
+
+.image-hoobies{
+    width: 100% !important;
+    height: 298px;
+    object-fit: cover;
+    
+}
+
+.text-hobbie{
+
+    text-decoration: underline;
+}

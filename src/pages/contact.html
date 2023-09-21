@@ -26,6 +26,18 @@
                     <span>Inicio</span>
                     <i>home</i>
                 </a>
+
+                <a href="./studies.html"> 
+                    <span>Estudios</span>
+                    <i>school</i>
+                </a>
+
+                <a href="./hobbies.html"> 
+                    <span>Pasatiemos</span>
+                    <i>playing_cards</i>
+                </a>
+                
+
                 <a href="./projects.html"> 
                     <span>Proyectos</span>
                     <i>tactic</i>
@@ -51,23 +63,23 @@
                     <span class="subtitle-contact">Contáctame a través de este formulario</span>    
                     <form id="form-contact">
                         <div class="field label border">
-                            <input type="text">
+                            <input id="name" type="text">
                             <label>Nombre</label>
                             <span class="helper">Ejemplo: Juan Pérez</span>
                         </div>  
                         <div class="field label border">
-                            <input type="email" >
+                            <input id="email" type="email" >
                             <label>Correo electrónico</label>
                             <span class="helper">Ejemplo: ejemplo@mail.com</span>
                         </div>  
 
                         <div class="field textarea label border">
-                            <textarea></textarea>
+                            <textarea id="message"></textarea>
                             <label>Mensaje</label>
                         </div>
 
                         <div class="btn-container">
-                            <button id="btn-send" type="button">
+                            <button id="btn-send" type="button" onclick="validarFormulario()">
                                 <i>send</i>
                                 <span>Enviar</span>
                             </button>
