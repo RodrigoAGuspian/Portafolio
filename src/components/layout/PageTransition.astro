@@ -1,0 +1,55 @@
+---
+// Componente para manejar las transiciones de página
+---
+
+<div id="page-transition" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 transform translate-y-full transition-transform duration-500 ease-in-out"></div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const transition = document.getElementById('page-transition');
+    if (!transition) return;
+
+    // Iniciar animación de entrada
+    setTimeout(() => {
+      transition.classList.add('opacity-0');
+      transition.style.transform = 'translateY(0)';
+    }, 50);
+    
+    // Configurar la animación de salida al hacer clic en enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        
+        // Si es el enlace de inicio, solo hacer scroll suave sin animación
+        if (href === '#inicio') {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+        
+        // Si no es un enlace válido, salir
+        if (!href || !href.startsWith('#')) return;
+        
+        e.preventDefault();
+        document.body.classList.add('transitioning');
+        transition.classList.remove('opacity-0');
+        
+        setTimeout(() => {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          
+          // Restaurar después de la transición
+          setTimeout(() => {
+            document.body.classList.remove('transitioning');
+            transition.classList.add('opacity-0');
+          }, 600);
+        }, 50);
+      });
+    });
+  });
+</script>

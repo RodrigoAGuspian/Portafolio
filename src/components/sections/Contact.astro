@@ -1,0 +1,85 @@
+---
+const contactos = [
+  { 
+    icon: '📧', 
+    label: 'Correo electrónico', 
+    value: 'rodalejo8@gmail.com',
+    url: 'mailto:rodalejo8@gmail.com'
+  },
+  { 
+    icon: '💼', 
+    label: 'LinkedIn', 
+    value: 'linkedin.com/in/rodrigo-alejandro-guspian-perez-bb79471a6',
+    url: 'https://www.linkedin.com/in/rodrigo-alejandro-guspian-perez-bb79471a6/',
+    isExternal: true
+  },
+  { 
+    icon: '💻', 
+    label: 'GitHub', 
+    value: 'github.com/RodrigoAGuspian',
+    url: 'https://github.com/RodrigoAGuspian',
+    isExternal: true
+  },
+  { 
+    icon: '🌐', 
+    label: 'Portafolio', 
+    value: 'rodrigo.dev',
+    url: 'https://rodrigo.dev',
+    isExternal: true
+  },
+  { 
+    icon: '📍', 
+    label: 'Ubicación', 
+    value: 'Popayán, Colombia',
+    isExternal: false
+  },
+  { 
+    icon: '📱', 
+    label: 'Teléfono', 
+    value: '+57 318 820 8764',
+    url: 'tel:+573188208764',
+    isExternal: false
+  },
+];
+---
+
+<section id="contacto" class="w-full py-16 px-4 bg-gray-50 dark:bg-gray-800 transition-colors duration-300 overflow-hidden">
+  <div class="max-w-6xl mx-auto w-full px-4">
+    <h2 class="text-3xl font-bold mb-12 text-gray-900 dark:text-white animate-fade-in" style="animation-delay: 100ms;">
+      Contáctame
+      <div class="w-16 h-1 bg-blue-600 dark:bg-blue-400 mt-2 rounded-full"></div>
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      {contactos.map((contacto, index) => (
+        <div 
+          class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-fade-in"
+          style={`animation-delay: ${100 + (index * 100)}ms;`}
+        >
+          <div class="flex items-start space-x-4">
+            <span class="text-2xl">{contacto.icon}</span>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-200">
+                {contacto.label}
+              </h3>
+              {contacto.url ? (
+                <a 
+                  href={contacto.url} 
+                  target={contacto.isExternal ? "_blank" : "_self"}
+                  rel={contacto.isExternal ? "noopener noreferrer" : ""}
+                  class="text-blue-600 dark:text-blue-400 hover:underline break-all"
+                >
+                  {contacto.value}
+                </a>
+              ) : (
+                <p class="text-gray-600 dark:text-gray-300">
+                  {contacto.value}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+const title = "Sobre mí";
+const content = [
+  "Soy desarrollador de Software, estudiante de Ingeniería de Sistemas y encantado con la programación.",
+  
+  "Tengo destreza en el desarrollo de apliaciones móviles y web; activo a la hora de aprender nuevas tecnologías; responsable y competitivo.",
+  
+  "He trabajado con Angular, Java, React, Tailwind CSS, Go, Kotlin, Vue.js, Git, Python, Android, C, C++ y demás tecnologías",
+  
+  "Mi enfoque actual está en aprender sobre mineria de datos, ingeniería de procesos, desarrollo en Kotlin Multiplaform e implementar inteligencia artificial más allá de ser usuario."
+];
+---
+
+<section id="sobre-mi" class="w-full py-16 px-4 bg-white dark:bg-gray-900 overflow-hidden">
+  <div class="max-w-6xl mx-auto w-full px-4">
+    <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
+      {title}
+      <div class="w-16 h-1 bg-blue-600 dark:bg-blue-400 mt-2 rounded-full"></div>
+    </h2>
+    
+    <div class="prose dark:prose-invert max-w-full text-gray-700 dark:text-gray-300">
+      {content.map(paragraph => (
+        <p class="mb-4 leading-relaxed">
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  </div>
+</section>

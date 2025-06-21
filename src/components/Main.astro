@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+import Navbar from './layout/Navbar.astro';
+import PageTransition from './layout/PageTransition.astro';
+import Hero from './layout/Hero.astro';
+import About from './sections/About.astro';
+import Projects from './sections/Projects.astro';
+import Contact from './sections/Contact.astro';
+---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <PageTransition />
+    <Navbar />
+    <main>
+      <Hero />
+      <Projects />
+      <About />
+      <Contact />
+    </main>
+  </body>
+</html>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+  const modoGuardado = localStorage.getItem('theme');
+  if (modoGuardado === 'light') {
+    document.body.classList.add('light');
+  } else {
+    document.body.classList.remove('light');
+  }
+});
+</script>
+<style>
+	main {
+		margin: 0;
+		height: 100%;
+	}
+</style>

@@ -1,0 +1,145 @@
+---
+const projects = [
+{
+    title: "rodtris",
+    description: "Clon de Tetris desarrollado con ebitengine",
+    technologies: ["Go", "Ebitengine"],
+    github: "https://github.com/RodrigoAGuspian/rodtris"
+  },
+  {
+    title: "go-examples",
+    description: "Ejercicios útiles para aprender Go",
+    technologies: ["Go"],
+    github: "https://github.com/RodrigoAGuspian/go-examples"
+  },
+  {
+    title: "millonario-game",
+    description: "Juego estilo '¿Quién quiere ser millonario?'",
+    technologies: ["Vue.js", "JavaScript"],
+    github: "https://github.com/RodrigoAGuspian/millonario-game"
+  },
+  {
+    title: "go-sintaxis",
+    description: "Explicación de la sintaxis básica de Go por módulos",
+    technologies: ["Go"],
+    github: "https://github.com/RodrigoAGuspian/go-sintaxis"
+  },
+  {
+    title: "Portafolio",
+    description: "Sitio web el cual aloja una breve descripción de mi, proyectos, y demás.",
+    technologies: ["Astro", "Tailwind CSS", "TypeScript"],
+    github: "https://github.com/RodrigoAGuspian/Portafolio"
+  },
+  {
+    title: "ColorApp",
+    description: "Juego sobre el efecto Stroop",
+    technologies: ["Java", "Android"],
+    github: "https://github.com/DARWorldSkills/ColorApp5"
+  },
+
+  
+];
+
+const allTechnologies = [...new Set(projects.flatMap(project => project.technologies))];
+---
+
+<section id="proyectos" class="py-16 px-4 bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+      Mis Proyectos
+      <div class="w-16 h-1 bg-blue-600 dark:bg-blue-400 mt-2 rounded-full"></div>
+    </h2>
+    
+    <div class="flex flex-wrap gap-3 mb-8" id="filtros">
+      <button 
+        class="px-4 py-2 rounded-full text-sm font-medium bg-blue-600 dark:text-white text-black hover:text-white hover:bg-blue-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+      >
+        Todos
+      </button>
+      {allTechnologies.map(tech => (
+        <button 
+          class="px-4 py-2 rounded-full text-sm font-medium bg-blue-600 dark:text-white text-black hover:text-white hover:bg-blue-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        >
+          {tech}
+        </button>
+      ))}
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center" id="contenedor-proyectos">
+      {projects.map((project, index) => {
+        const techClasses = project.technologies.map(tech => `tech-${tech.toLowerCase().replace(/[^a-z0-9]/g, '-')}`).join(' ');
+        return (
+          <article 
+            class={`proyecto bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${techClasses} animate-fade-in`}
+            data-technologies={project.technologies.join(',')}
+          >
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {project.title}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                {project.description}
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.technologies.map(tech => (
+                  <span class="tecnologia px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a 
+                href={project.github} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Ver en GitHub
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const proyectos = document.querySelectorAll('.proyecto');
+      const botones = document.querySelectorAll('#filtros button');
+      
+
+      const filtrarProyectos = (tecnologia) => {
+        botones.forEach(boton => {
+          const esBotonActual = (tecnologia === 'todos' && boton.textContent.trim() === 'Todos') || 
+                              boton.textContent.trim() === tecnologia;
+          
+          if (esBotonActual) {
+            boton.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-black');
+            boton.classList.add('bg-blue-600', 'text-white', 'hover:text-white');
+          } else {
+            boton.classList.remove('bg-blue-600', 'text-white');
+            boton.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-black', 'hover:text-black');
+          }
+        });
+        
+        proyectos.forEach(proyecto => {
+          const tecnologias = proyecto.getAttribute('data-technologies').split(',');
+          if (tecnologia === 'todos' || tecnologias.includes(tecnologia)) {
+            proyecto.style.display = 'block';
+          } else {
+            proyecto.style.display = 'none';
+          }
+        });
+      };
+      botones.forEach(boton => {
+        const tecnologia = boton.textContent.trim() === 'Todos' ? 'todos' : boton.textContent.trim();
+        boton.addEventListener('click', () => filtrarProyectos(tecnologia));
+      });
+
+      filtrarProyectos('todos');
+    });
+  </script>
+</section>
