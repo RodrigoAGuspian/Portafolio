@@ -1,11 +1,8 @@
-# Mi Portafolio Personal
-
-¡Bienvenido a mi portafolio personal! Este sitio web está construido con [Astro](https://astro.build/), un framework web moderno para crear sitios rápidos y optimizados.
+Este sitio web está construido con [Astro](https://astro.build/), un framework web moderno para crear sitios rápidos y optimizados.
 
 ## 🚀 Características
 
 - **Rendimiento óptimo** gracias a Astro
-- **Diseño moderno y responsivo**
 - **Transiciones suaves** entre páginas
 - **Secciones organizadas** para mostrar mis proyectos y habilidades
 - **Fácil de mantener y actualizar**
